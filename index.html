@@ -3,445 +3,390 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tarsier Capital</title>
+    <title>Tarsier Capital — Investing in Nordic growth companies</title>
+    <meta
+      name="description"
+      content="Tarsier Capital AB is a Stockholm-based investment company focused on small and medium-sized growth companies across the Nordic region."
+    />
+    <meta property="og:title" content="Tarsier Capital" />
+    <meta property="og:description" content="Investing in small and medium-sized growth companies across the Nordic region." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tarsiercapital.se/" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%233df57f'/%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Inter+Tight:wght@500;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      * {
+      :root {
+        --bg: #0a0a0b;
+        --line: rgba(255, 255, 255, 0.1);
+        --text: #f4f3ef;
+        --text-2: #9d9da3;
+        --text-3: #626268;
+        --accent: #3df57f;
+        --display: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --gutter: clamp(1.5rem, 5vw, 5rem);
+        --space: clamp(7rem, 20vh, 14rem);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
 
       html {
         scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
       }
 
       body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: #09090b;
-        color: #a1a1aa;
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text-2);
         line-height: 1.6;
         min-height: 100vh;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      /* Subtle radial glow behind hero */
-      .glow {
-        position: fixed;
-        top: -20%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 800px;
-        height: 600px;
-        background: radial-gradient(ellipse, rgba(255, 100, 40, 0.06) 0%, transparent 70%);
-        pointer-events: none;
-        z-index: 0;
+      ::selection {
+        background: var(--accent);
+        color: #0a0a0b;
       }
 
-      /* Grain overlay */
-      .grain {
-        position: fixed;
-        inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      .page {
-        position: relative;
-        z-index: 2;
-      }
-
-      /* Nav */
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem 2rem;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-
-      .logo {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #fafafa;
-        letter-spacing: -0.01em;
-      }
-
-      .nav-link {
-        font-size: 1rem;
-        color: #71717a;
+      a {
+        color: inherit;
         text-decoration: none;
+      }
+
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 6px;
+      }
+
+      .wrap {
+        padding-inline: var(--gutter);
+      }
+
+      /* ---------- Type ---------- */
+      .label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-3);
+      }
+
+      .label b {
+        font-weight: 500;
+        color: var(--accent);
+      }
+
+      .display {
+        font-family: var(--display);
+        font-weight: 500;
+        color: var(--text);
+        letter-spacing: -0.035em;
+        line-height: 1.0;
+        text-wrap: balance;
+      }
+
+      .display em {
+        font-style: normal;
+        color: var(--accent);
+      }
+
+      .lede {
+        font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+        font-weight: 200;
+        line-height: 1.55;
+        color: var(--text);
+        max-width: 38ch;
+      }
+
+      /* ---------- Header ---------- */
+      header {
+        position: absolute;
+        inset: 0 0 auto 0;
+        z-index: 5;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 84px;
+        font-size: 0.9rem;
+      }
+
+      .brand {
+        color: var(--text);
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .brand::before {
+        content: '';
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .nav a.link {
+        color: var(--text-2);
         transition: color 0.2s;
       }
 
-      .nav-link:hover {
-        color: #fafafa;
+      .nav a.link:hover {
+        color: var(--text);
       }
 
-      /* Hero */
-      .hero {
-        max-width: 760px;
-        margin: 0 auto;
-        padding: 10vh 2rem 6rem;
-        text-align: center;
-      }
-
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.35rem 0.9rem;
-        border: 1px solid #27272a;
-        border-radius: 100px;
-        font-size: 1rem;
-        color: #a1a1aa;
-        margin-bottom: 2.5rem;
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .badge-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #f97316;
-      }
-
-      h1 {
-        font-size: clamp(2.8rem, 7vw, 4.5rem);
-        font-weight: 700;
-        color: #fafafa;
-        letter-spacing: -0.035em;
-        line-height: 1.08;
-        margin-bottom: 1.5rem;
-      }
-
-      .hero-sub {
-        font-size: clamp(1.05rem, 2vw, 1.2rem);
-        font-weight: 400;
-        color: #71717a;
-        max-width: 520px;
-        margin: 0 auto;
-        line-height: 1.7;
-      }
-
-      /* Divider */
-      .section-divider {
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, #27272a, transparent);
-      }
-
-      /* Services */
-      .services {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 5rem 2rem;
-      }
-
-      .section-label {
-        font-size: 1rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #f97316;
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        font-size: clamp(1.5rem, 3vw, 2rem);
-        font-weight: 600;
-        color: #fafafa;
-        letter-spacing: -0.025em;
-        margin-bottom: 3rem;
-      }
-
-      @property --snake-angle {
-        syntax: '<angle>';
-        initial-value: 0deg;
-        inherits: false;
-      }
-
-      .cards-wrapper {
+      /* ---------- Cover ---------- */
+      .cover {
         position: relative;
-        border-radius: 16px;
-        padding: 1px;
-        overflow: hidden;
-      }
-
-      .cards-wrapper::before {
-        content: '';
-        position: absolute;
-        inset: -80%;
-        background: conic-gradient(
-          from var(--snake-angle),
-          transparent 0%,
-          transparent 70%,
-          #f97316 78%,
-          #ff6a00 82%,
-          #f97316 86%,
-          transparent 94%,
-          transparent 100%
-        );
-        animation: snake-spin 4s linear infinite;
-        z-index: 0;
-      }
-
-      .cards-wrapper::after {
-        content: '';
-        position: absolute;
-        inset: 1px;
-        background: #111113;
-        border-radius: 15px;
-        z-index: 1;
-      }
-
-      @keyframes snake-spin {
-        to {
-          --snake-angle: 360deg;
-        }
-      }
-
-      .cards {
-        position: relative;
-        z-index: 2;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        background: #1c1c1f;
-        border-radius: 15px;
-        overflow: hidden;
-      }
-
-      .card {
-        background: #111113;
-        padding: 2.2rem;
-        transition: background 0.3s;
-      }
-
-      .card:hover {
-        background: #16161a;
-      }
-
-      .card-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        background: rgba(249, 115, 22, 0.08);
-        border: 1px solid rgba(249, 115, 22, 0.15);
+        min-height: 100svh;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
-        margin-bottom: 1.2rem;
-        font-size: 1.1rem;
+        padding-top: 84px;
+        padding-bottom: 84px;
       }
 
-      .card h3 {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: #e4e4e7;
-        margin-bottom: 0.6rem;
+      .cover::before {
+        content: '';
+        position: absolute;
+        top: -20vh;
+        right: -10vw;
+        width: max(70vw, 640px);
+        height: min(80vh, 900px);
+        background: radial-gradient(ellipse at center, rgba(61, 245, 127, 0.14) 0%, transparent 62%);
+        filter: blur(30px);
+        pointer-events: none;
       }
 
-      .card p {
-        font-size: 1rem;
-        color: #71717a;
-        line-height: 1.6;
+      .cover-inner {
+        position: relative;
       }
 
-      /* Contact */
-      .contact {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 5rem 2rem;
+      .cover .label {
+        margin-bottom: clamp(2rem, 5vh, 4rem);
       }
 
-      .contact-text {
-        max-width: 100%;
+      .cover h1 {
+        font-size: clamp(3.2rem, min(9.5vw, 15vh), 8.5rem);
+        max-width: 10ch;
       }
 
-      .contact-text p {
-        font-size: 1rem;
-        color: #71717a;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
+      .cover-foot {
+        margin-top: clamp(2rem, 5vh, 3.5rem);
       }
 
-      .contact-email {
+      .scroll-hint {
+        position: absolute;
+        right: var(--gutter);
+        bottom: 2.5rem;
         display: inline-flex;
         align-items: center;
-        gap: 0.6rem;
-        padding: 0.65rem 1.2rem;
-        border: 1px solid #27272a;
-        border-radius: 10px;
-        font-size: 1rem;
-        color: #fafafa;
-        text-decoration: none;
-        transition: border-color 0.2s, background 0.2s;
-        background: rgba(255, 255, 255, 0.02);
+        gap: 0.75rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-3);
       }
 
-      .contact-email:hover {
-        border-color: #3f3f46;
-        background: rgba(255, 255, 255, 0.04);
+      .scroll-hint::after {
+        content: '';
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(var(--text-3), transparent);
       }
 
-      .contact-email svg {
-        width: 16px;
-        height: 16px;
-        color: #f97316;
+      /* ---------- Spreads ---------- */
+      .spread {
+        border-top: 1px solid var(--line);
+        padding-block: var(--space);
       }
 
-      /* Footer */
+      .spread h2 {
+        font-size: clamp(2.4rem, 5.6vw, 5.2rem);
+        max-width: 18ch;
+      }
+
+      .spread .lede {
+        margin-top: clamp(2rem, 4vh, 3rem);
+      }
+
+
+      /* ---------- Contact ---------- */
+      .contact h2 {
+        font-size: clamp(2.2rem, 5vw, 4.6rem);
+        max-width: 20ch;
+      }
+
+      .contact .email {
+        display: inline-block;
+        margin-top: clamp(2.5rem, 6vh, 4rem);
+        font-family: var(--display);
+        font-weight: 500;
+        font-size: clamp(1.6rem, 4vw, 3.6rem);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.15em;
+        transition: color 0.25s, border-color 0.25s;
+        overflow-wrap: anywhere;
+      }
+
+      .contact .email:hover {
+        color: var(--accent);
+      }
+
+
+      /* ---------- Footer ---------- */
       footer {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 2rem;
+        border-top: 1px solid var(--line);
+        padding-block: 2.5rem;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid #18181b;
+        gap: 0.75rem 2rem;
+        font-size: 0.8rem;
+        color: var(--text-3);
       }
 
-      .footer-left {
-        font-size: 0.78rem;
-        color: #3f3f46;
+      footer span + span::before {
+        content: '·';
+        margin-inline: 0.75rem;
       }
 
-      .footer-right {
-        font-size: 0.78rem;
-        color: #3f3f46;
-      }
-
-      /* Animations */
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .fade-up {
-        animation: fadeUp 0.8s ease forwards;
+      /* ---------- Motion ---------- */
+      .reveal {
         opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+        transition-delay: var(--d, 0s);
       }
 
-      .fade-up-delay-1 { animation-delay: 0.1s; }
-      .fade-up-delay-2 { animation-delay: 0.2s; }
-      .fade-up-delay-3 { animation-delay: 0.35s; }
-      .fade-up-delay-4 { animation-delay: 0.5s; }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        .hero {
-          padding: 6vh 1.5rem 4rem;
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
         }
-
-        .cards {
-          grid-template-columns: 1fr;
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
         }
+      }
 
-        .contact {
-          flex-direction: column;
-          gap: 2rem;
-          padding: 3rem 1.5rem;
+      /* ---------- Responsive ---------- */
+      @media (max-width: 520px) {
+        .nav {
+          height: 72px;
         }
-
-        footer {
-          flex-direction: column;
-          gap: 0.5rem;
-          text-align: center;
+        .cover {
+          padding-top: 72px;
+          padding-bottom: 72px;
+        }
+        .scroll-hint {
+          display: none;
         }
       }
     </style>
   </head>
   <body>
-    <div class="glow"></div>
-    <div class="grain"></div>
+    <header class="wrap">
+      <div class="nav">
+        <a href="#top" class="brand">Tarsier Capital</a>
+        <a href="mailto:info@tarsiercapital.se" class="link">Contact</a>
+      </div>
+    </header>
 
-    <div class="page">
-      <nav>
-        <div class="logo">Tarsier Capital</div>
-        <a href="mailto:info@tarsiercapital.se" class="nav-link">Contact</a>
-      </nav>
-
-      <section class="hero">
-        <div class="badge fade-up">
-          <span class="badge-dot"></span>
-          Stockholm, Sweden
-        </div>
-        <h1 class="fade-up fade-up-delay-1">Investing in Nordic growth</h1>
-        <p class="hero-sub fade-up fade-up-delay-2">
-          Focused on investing in small and medium-sized growth companies across the Nordic region.
-        </p>
-      </section>
-
-      <div class="section-divider"></div>
-
-      <section class="services fade-up fade-up-delay-3">
-        <p class="section-label">What we do</p>
-        <h2 class="section-title">We also build digital products</h2>
-        <div class="cards-wrapper">
-          <div class="cards">
-            <div class="card">
-              <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <h3>Digital Services</h3>
-              <p>Developing and operating online platforms and software products for a range of industries.</p>
-            </div>
-            <div class="card">
-              <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22"/><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93"/><path d="M8.56 13a8 8 0 0 0-2.3 3.5"/><path d="M15.44 13a8 8 0 0 1 2.3 3.5"/></svg>
-              </div>
-              <h3>AI-Based Solutions</h3>
-              <p>Leveraging artificial intelligence to create intelligent tools and automated workflows.</p>
-            </div>
-            <div class="card">
-              <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-              </div>
-              <h3>Software Products</h3>
-              <p>Building and maintaining SaaS products delivered online to customers worldwide.</p>
-            </div>
+    <main id="top">
+      <section class="cover wrap">
+        <div class="cover-inner">
+          <p class="label reveal"><b>Stockholm</b> &nbsp;·&nbsp; Investment company</p>
+          <h1 class="display reveal" style="--d: 0.1s">
+            Investing in <em>Nordic</em> growth.
+          </h1>
+          <div class="cover-foot">
+            <p class="lede reveal" style="--d: 0.2s">
+              Long-term capital for small and medium-sized growth companies across the Nordic region.
+            </p>
           </div>
         </div>
+        <a href="#focus" class="scroll-hint reveal" style="--d: 0.3s">Scroll</a>
       </section>
 
-      <section class="contact fade-up fade-up-delay-4">
-        <div class="contact-text">
-          <p class="section-label">Support</p>
-          <h2 class="section-title">Get in touch</h2>
-          <p>
-            For support regarding any of our products, please visit the dedicated product website for the service you need assistance with. Contact information and support resources are available on each respective product page.
+      <section id="focus" class="spread wrap">
+        <div>
+          <h2 class="display reveal" style="--d: 0.1s">
+            We back companies with a proven product and room to grow.
+          </h2>
+          <p class="lede reveal" style="--d: 0.2s">
+            Our focus is small and medium-sized businesses in the Nordic region. We invest as
+            operators, with capital and hands-on experience from building digital companies
+            ourselves.
           </p>
-          <p>
-            If you are looking for angel investment or want to discuss potential opportunities, we'd love to hear from you.
-          </p>
-          <a href="mailto:info@tarsiercapital.se" class="contact-email">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            info@tarsiercapital.se
-          </a>
         </div>
       </section>
 
-      <footer>
-        <span class="footer-left">&copy; 2026 Tarsier Capital AB</span>
-        <span class="footer-right">Org.nr 559003-4970 &middot; Stockholm, Sweden</span>
-      </footer>
-    </div>
+
+      <section id="contact" class="spread wrap contact">
+        <div>
+          <h2 class="display reveal" style="--d: 0.1s">
+            Looking for angel investment, or want to discuss an opportunity?
+          </h2>
+          <a href="mailto:info@tarsiercapital.se" class="email reveal" style="--d: 0.2s">info@tarsiercapital.se</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <span>&copy; 2026 Tarsier Capital AB</span>
+      <div>
+        <span>Org.nr 559003-4970</span>
+        <span>Stockholm, Sweden</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>
