@@ -12,29 +12,40 @@
     <meta property="og:description" content="Investing in small and medium-sized growth companies across the Nordic region." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tarsiercapital.se/" />
-    <meta name="theme-color" content="#0a0a0b" />
+    <meta name="theme-color" content="#0d1b16" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%233df57f'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1b16'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='%238ed8ae' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='3.25' fill='%238ed8ae'/%3E%3C/svg%3E"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Inter+Tight:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..500;1,6..72,400..500&display=swap"
       rel="stylesheet"
     />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
     <style>
       :root {
-        --bg: #0a0a0b;
-        --line: rgba(255, 255, 255, 0.1);
-        --text: #f4f3ef;
-        --text-2: #9d9da3;
-        --text-3: #626268;
-        --accent: #3df57f;
-        --display: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        --gutter: clamp(1.5rem, 5vw, 5rem);
-        --space: clamp(7rem, 20vh, 14rem);
+        --paper: #f6f3ec;
+        --ink: #111a16;
+        --ink-2: #414c46;
+        --ink-3: #5f6963;
+        --forest: #0d1b16;
+        --cream: #f4f0e6;
+        --cream-2: rgba(244, 240, 230, 0.74);
+        --cream-3: rgba(244, 240, 230, 0.56);
+        --green: #1e6a4b;
+        --mint: #8ed8ae;
+        --rule: rgba(17, 26, 22, 0.14);
+        --rule-dark: rgba(244, 240, 230, 0.16);
+        --accent: var(--green);
+        --serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+        --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --gutter: clamp(1.25rem, 5vw, 4rem);
+        --max: 1240px;
+        --nav-h: 76px;
       }
 
       *,
@@ -52,18 +63,16 @@
 
       body {
         font-family: var(--sans);
-        background: var(--bg);
-        color: var(--text-2);
+        background: var(--forest);
+        color: var(--ink-2);
         line-height: 1.6;
-        min-height: 100vh;
-        overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
 
       ::selection {
-        background: var(--accent);
-        color: #0a0a0b;
+        background: var(--mint);
+        color: var(--forest);
       }
 
       a {
@@ -71,219 +80,437 @@
         text-decoration: none;
       }
 
-      a:focus-visible {
+      :focus-visible {
         outline: 2px solid var(--accent);
-        outline-offset: 6px;
+        outline-offset: 4px;
+        border-radius: 2px;
       }
 
       .wrap {
-        padding-inline: var(--gutter);
+        width: min(100% - 2 * var(--gutter), var(--max));
+        margin-inline: auto;
+      }
+
+      .on-dark {
+        --accent: var(--mint);
       }
 
       /* ---------- Type ---------- */
-      .label {
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
         font-size: 0.75rem;
         font-weight: 500;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: var(--text-3);
+        color: var(--ink-3);
       }
 
-      .label b {
-        font-weight: 500;
-        color: var(--accent);
+      .eyebrow::before {
+        content: '';
+        flex: none;
+        width: 1.75rem;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .on-dark .eyebrow {
+        color: var(--cream-3);
       }
 
       .display {
-        font-family: var(--display);
-        font-weight: 500;
-        color: var(--text);
-        letter-spacing: -0.035em;
-        line-height: 1.0;
+        font-family: var(--serif);
+        font-weight: 400;
+        letter-spacing: -0.022em;
         text-wrap: balance;
       }
 
       .display em {
-        font-style: normal;
+        font-style: italic;
         color: var(--accent);
       }
 
-      .lede {
-        font-size: clamp(1.25rem, 1.8vw, 1.6rem);
-        font-weight: 200;
-        line-height: 1.55;
-        color: var(--text);
-        max-width: 38ch;
+      .display .dot {
+        color: var(--accent);
+      }
+
+      .arrow {
+        flex: none;
+        width: 1em;
+        height: 1em;
+        transition: transform 0.25s ease;
       }
 
       /* ---------- Header ---------- */
-      header {
-        position: absolute;
+      .site-header {
+        --accent: var(--mint);
+        position: fixed;
         inset: 0 0 auto 0;
-        z-index: 5;
+        z-index: 20;
+        color: var(--cream);
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .site-header.is-scrolled {
+        --accent: var(--green);
+        color: var(--ink);
+        background: rgba(246, 243, 236, 0.9);
+        -webkit-backdrop-filter: saturate(1.4) blur(14px);
+        backdrop-filter: saturate(1.4) blur(14px);
+        box-shadow: 0 1px 0 var(--rule);
       }
 
       .nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 84px;
-        font-size: 0.9rem;
+        gap: 1.5rem;
+        height: var(--nav-h);
       }
 
       .brand {
-        color: var(--text);
-        font-weight: 500;
         display: inline-flex;
         align-items: center;
         gap: 0.7rem;
+        font-family: var(--serif);
+        font-size: 1.3rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
       }
 
-      .brand::before {
-        content: '';
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: var(--accent);
+      .brand svg {
+        flex: none;
+        width: 34px;
+        height: 18px;
       }
 
-      .nav a.link {
-        color: var(--text-2);
-        transition: color 0.2s;
+      .brand .pupil {
+        fill: var(--accent);
+        transition: fill 0.3s ease;
       }
 
-      .nav a.link:hover {
-        color: var(--text);
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(1.25rem, 3vw, 2.25rem);
+        font-size: 0.9rem;
       }
 
-      /* ---------- Cover ---------- */
-      .cover {
+      .nav-links a:not(.nav-cta) {
+        opacity: 0.78;
+        transition: opacity 0.2s ease;
+      }
+
+      .nav-links a:not(.nav-cta):hover {
+        opacity: 1;
+      }
+
+      .nav-cta {
+        padding: 0.55rem 1.1rem;
+        border: 1px solid currentColor;
+        border-color: color-mix(in srgb, currentColor 32%, transparent);
+        border-radius: 999px;
+        font-weight: 500;
+        transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .nav-cta:hover {
+        border-color: currentColor;
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
         position: relative;
-        min-height: 100svh;
+        isolation: isolate;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding-top: 84px;
-        padding-bottom: 84px;
+        min-height: 100vh;
+        min-height: 100svh;
+        background: var(--forest);
+        color: var(--cream);
       }
 
-      .cover::before {
+      .hero::before {
         content: '';
         position: absolute;
-        top: -20vh;
-        right: -10vw;
-        width: max(70vw, 640px);
-        height: min(80vh, 900px);
-        background: radial-gradient(ellipse at center, rgba(61, 245, 127, 0.14) 0%, transparent 62%);
-        filter: blur(30px);
+        inset: 0;
+        z-index: -2;
+        background:
+          radial-gradient(55% 65% at 82% 38%, rgba(142, 216, 174, 0.17), transparent 72%),
+          linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.28));
         pointer-events: none;
       }
 
-      .cover-inner {
-        position: relative;
-      }
-
-      .cover .label {
-        margin-bottom: clamp(2rem, 5vh, 4rem);
-      }
-
-      .cover h1 {
-        font-size: clamp(3.2rem, min(9.5vw, 15vh), 8.5rem);
-        max-width: 10ch;
-      }
-
-      .cover-foot {
-        margin-top: clamp(2rem, 5vh, 3.5rem);
-      }
-
-      .scroll-hint {
+      .hero-rings {
         position: absolute;
-        right: var(--gutter);
-        bottom: 2.5rem;
+        z-index: -1;
+        top: 46%;
+        right: max(-12vw, -180px);
+        width: min(92vh, 62vw, 880px);
+        aspect-ratio: 1;
+        transform: translateY(-50%);
+        color: var(--mint);
+        -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 70%);
+        mask-image: radial-gradient(circle, #000 18%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .hero-rings circle {
+        vector-effect: non-scaling-stroke;
+      }
+
+      .hero-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: calc(var(--nav-h) + clamp(2rem, 7vh, 5rem));
+        padding-bottom: clamp(2.5rem, 7vh, 5rem);
+      }
+
+      .hero h1 {
+        margin-top: clamp(1.5rem, 4vh, 2.5rem);
+        max-width: 11ch;
+        font-size: clamp(3rem, min(8.4vw, 13.5vh), 7rem);
+        line-height: 0.98;
+      }
+
+      .hero .lede {
+        margin-top: clamp(1.5rem, 3.5vh, 2.25rem);
+        max-width: 42ch;
+        font-size: clamp(1.06rem, 1.4vw, 1.28rem);
+        line-height: 1.6;
+        color: var(--cream-2);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.25rem 2rem;
+        margin-top: clamp(2rem, 4.5vh, 3rem);
+      }
+
+      .btn {
         display: inline-flex;
         align-items: center;
-        gap: 0.75rem;
-        font-size: 0.75rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--text-3);
-      }
-
-      .scroll-hint::after {
-        content: '';
-        width: 1px;
-        height: 40px;
-        background: linear-gradient(var(--text-3), transparent);
-      }
-
-      /* ---------- Spreads ---------- */
-      .spread {
-        border-top: 1px solid var(--line);
-        padding-block: var(--space);
-      }
-
-      .spread h2 {
-        font-size: clamp(2.4rem, 5.6vw, 5.2rem);
-        max-width: 18ch;
-      }
-
-      .spread .lede {
-        margin-top: clamp(2rem, 4vh, 3rem);
-      }
-
-
-      /* ---------- Contact ---------- */
-      .contact h2 {
-        font-size: clamp(2.2rem, 5vw, 4.6rem);
-        max-width: 20ch;
-      }
-
-      .contact .email {
-        display: inline-block;
-        margin-top: clamp(2.5rem, 6vh, 4rem);
-        font-family: var(--display);
+        gap: 0.65rem;
+        padding: 0.95rem 1.5rem;
+        border-radius: 999px;
+        background: var(--mint);
+        color: var(--forest);
+        font-size: 0.95rem;
         font-weight: 500;
-        font-size: clamp(1.6rem, 4vw, 3.6rem);
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-        color: var(--text);
-        border-bottom: 2px solid var(--accent);
-        padding-bottom: 0.15em;
-        transition: color 0.25s, border-color 0.25s;
-        overflow-wrap: anywhere;
+        transition: background-color 0.25s ease;
       }
 
-      .contact .email:hover {
+      .btn:hover {
+        background: var(--cream);
+      }
+
+      .btn:hover .arrow,
+      .email:hover .arrow {
+        transform: translateX(4px);
+      }
+
+      .text-link {
+        font-size: 0.95rem;
+        font-weight: 500;
+        padding-bottom: 0.2rem;
+        border-bottom: 1px solid var(--rule-dark);
+        transition: border-color 0.25s ease;
+      }
+
+      .text-link:hover {
+        border-color: var(--mint);
+      }
+
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 1px solid var(--rule-dark);
+      }
+
+      .fact {
+        padding: 1.4rem 1.5rem 2rem 0;
+      }
+
+      .fact + .fact {
+        padding-left: 1.5rem;
+        border-left: 1px solid var(--rule-dark);
+      }
+
+      .fact dt {
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--cream-3);
+      }
+
+      .fact dd {
+        margin-top: 0.5rem;
+        font-family: var(--serif);
+        font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+        line-height: 1.3;
+        color: var(--cream);
+      }
+
+      /* ---------- Sections ---------- */
+      .section {
+        padding-block: clamp(5rem, 12vw, 9.5rem);
+        scroll-margin-top: var(--nav-h);
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+        gap: 2rem clamp(2rem, 5vw, 5rem);
+        align-items: start;
+      }
+
+      .section-grid .eyebrow {
+        padding-top: 0.9rem;
+      }
+
+      .section h2 {
+        max-width: 19ch;
+        font-size: clamp(2.1rem, 4.6vw, 3.75rem);
+        line-height: 1.06;
+        color: var(--ink);
+      }
+
+      .section .lede {
+        margin-top: clamp(1.5rem, 3vw, 2rem);
+        max-width: 54ch;
+        font-size: clamp(1.06rem, 1.3vw, 1.2rem);
+        line-height: 1.65;
+      }
+
+      /* ---------- Approach ---------- */
+      .approach {
+        background: var(--paper);
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2.5rem clamp(1.5rem, 3vw, 3rem);
+        margin-top: clamp(3.5rem, 8vw, 6rem);
+        list-style: none;
+      }
+
+      .principle {
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--rule);
+      }
+
+      .principle .num {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.1rem;
         color: var(--accent);
       }
 
-
-      /* ---------- Footer ---------- */
-      footer {
-        border-top: 1px solid var(--line);
-        padding-block: 2.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 0.75rem 2rem;
-        font-size: 0.8rem;
-        color: var(--text-3);
+      .principle h3 {
+        margin-top: clamp(1.5rem, 3vw, 2.75rem);
+        font-family: var(--serif);
+        font-size: 1.55rem;
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.012em;
+        color: var(--ink);
       }
 
-      footer span + span::before {
-        content: '·';
-        margin-inline: 0.75rem;
+      .principle p {
+        margin-top: 0.7rem;
+        max-width: 38ch;
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+
+      /* ---------- Contact ---------- */
+      .contact {
+        background: var(--forest);
+        color: var(--cream-2);
+      }
+
+      .contact h2 {
+        max-width: 21ch;
+        color: var(--cream);
+      }
+
+      .email {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+        margin-top: clamp(2rem, 5vw, 3.25rem);
+        padding-bottom: 0.12em;
+        border-bottom: 1px solid var(--mint);
+        font-family: var(--serif);
+        font-size: clamp(1.35rem, 3.6vw, 2.75rem);
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        color: var(--cream);
+        transition: color 0.25s ease;
+      }
+
+      .email:hover {
+        color: var(--mint);
+      }
+
+      .email .arrow {
+        width: 0.62em;
+        height: 0.62em;
+        color: var(--mint);
+      }
+
+      /* ---------- Footer ---------- */
+      .site-footer {
+        background: var(--forest);
+        color: var(--cream-3);
+        font-size: 0.82rem;
+      }
+
+      .site-footer .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem 2rem;
+        padding-block: 2rem 2.25rem;
+        border-top: 1px solid var(--rule-dark);
+      }
+
+      .site-footer .brand {
+        font-size: 1.1rem;
+        color: var(--cream);
+      }
+
+      .site-footer .brand svg {
+        width: 28px;
+        height: 15px;
+      }
+
+      .legal {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 1.75rem;
+        list-style: none;
       }
 
       /* ---------- Motion ---------- */
-      .reveal {
+      .js .reveal {
         opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+        transform: translateY(14px);
+        transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
         transition-delay: var(--d, 0s);
       }
 
-      .reveal.in {
+      .js .reveal.in {
         opacity: 1;
         transform: none;
       }
@@ -292,86 +519,239 @@
         html {
           scroll-behavior: auto;
         }
-        .reveal {
+        .js .reveal {
           opacity: 1;
           transform: none;
+          transition: none;
+        }
+        .arrow {
           transition: none;
         }
       }
 
       /* ---------- Responsive ---------- */
-      @media (max-width: 520px) {
-        .nav {
-          height: 72px;
+      @media (max-width: 900px) {
+        .facts {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-        .cover {
-          padding-top: 72px;
-          padding-bottom: 72px;
+        .fact {
+          padding-bottom: 1.4rem;
         }
-        .scroll-hint {
+        .fact:nth-child(odd) {
+          padding-left: 0;
+          border-left: 0;
+        }
+        .fact:nth-child(n + 3) {
+          border-top: 1px solid var(--rule-dark);
+        }
+        .section-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .section-grid .eyebrow {
+          padding-top: 0;
+        }
+        .principles {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .principle h3 {
+          margin-top: 1rem;
+        }
+        .principle p {
+          max-width: 54ch;
+        }
+      }
+
+      @media (max-width: 640px) {
+        :root {
+          --nav-h: 68px;
+        }
+        .nav-links a:not(.nav-cta) {
           display: none;
+        }
+        .brand {
+          font-size: 1.2rem;
+        }
+        .eyebrow {
+          gap: 0.6rem;
+          font-size: 0.7rem;
+          letter-spacing: 0.1em;
+        }
+        .eyebrow::before {
+          width: 1.1rem;
+        }
+        .hero-rings {
+          top: 30%;
+          right: -38vw;
+          width: 120vw;
+          opacity: 0.7;
+        }
+        .fact {
+          padding-right: 1rem;
+        }
+        .fact + .fact {
+          padding-left: 1rem;
+        }
+        .fact:nth-child(odd) {
+          padding-left: 0;
         }
       }
     </style>
   </head>
   <body>
-    <header class="wrap">
-      <div class="nav">
-        <a href="#top" class="brand">Tarsier Capital</a>
-        <a href="mailto:info@tarsiercapital.se" class="link">Contact</a>
+    <header class="site-header" id="site-header">
+      <div class="wrap nav">
+        <a href="#top" class="brand" aria-label="Tarsier Capital — home">
+          <svg viewBox="0 0 34 18" fill="none" aria-hidden="true">
+            <circle cx="9" cy="9" r="7.25" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="25" cy="9" r="7.25" stroke="currentColor" stroke-width="1.5" />
+            <circle class="pupil" cx="9" cy="9" r="2.75" />
+            <circle class="pupil" cx="25" cy="9" r="2.75" />
+          </svg>
+          <span>Tarsier Capital</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#approach">Approach</a>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </nav>
       </div>
     </header>
 
     <main id="top">
-      <section class="cover wrap">
-        <div class="cover-inner">
-          <p class="label reveal"><b>Stockholm</b> &nbsp;·&nbsp; Investment company</p>
-          <h1 class="display reveal" style="--d: 0.1s">
-            Investing in <em>Nordic</em> growth<em>.</em>
+      <section class="hero on-dark">
+        <svg class="hero-rings" viewBox="0 0 800 800" fill="none" aria-hidden="true">
+          <g stroke="currentColor" stroke-opacity="0.34">
+            <circle cx="400" cy="400" r="70" />
+            <circle cx="400" cy="400" r="130" />
+            <circle cx="400" cy="400" r="190" />
+            <circle cx="400" cy="400" r="250" />
+            <circle cx="400" cy="400" r="310" />
+            <circle cx="400" cy="400" r="370" />
+          </g>
+        </svg>
+
+        <div class="wrap hero-body">
+          <p class="eyebrow reveal">Stockholm · Investment company</p>
+          <h1 class="display reveal" style="--d: 0.08s">
+            Investing in <em>Nordic</em> growth<span class="dot">.</span>
           </h1>
-          <div class="cover-foot">
-            <p class="lede reveal" style="--d: 0.2s">
-              Long-term capital for small and medium-sized growth companies across the Nordic region.
-            </p>
+          <p class="lede reveal" style="--d: 0.16s">
+            Long-term capital for small and medium-sized growth companies across the Nordic region.
+          </p>
+          <div class="actions reveal" style="--d: 0.24s">
+            <a href="mailto:info@tarsiercapital.se" class="btn">
+              Get in touch
+              <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a href="#approach" class="text-link">Our approach</a>
           </div>
         </div>
-        <a href="#focus" class="scroll-hint reveal" style="--d: 0.3s">Scroll</a>
-      </section>
 
-      <section id="focus" class="spread wrap">
-        <div>
-          <h2 class="display reveal" style="--d: 0.1s">
-            We back companies with a proven product and room to grow<em>.</em>
-          </h2>
-          <p class="lede reveal" style="--d: 0.2s">
-            Our focus is small and medium-sized businesses in the Nordic region. We invest as
-            operators, with capital and hands-on experience from building digital companies
-            ourselves.
-          </p>
+        <div class="wrap">
+          <dl class="facts reveal" style="--d: 0.32s">
+            <div class="fact">
+              <dt>Focus</dt>
+              <dd>Small and medium-sized growth companies</dd>
+            </div>
+            <div class="fact">
+              <dt>Region</dt>
+              <dd>The Nordics</dd>
+            </div>
+            <div class="fact">
+              <dt>Approach</dt>
+              <dd>Operator-led, long-term capital</dd>
+            </div>
+            <div class="fact">
+              <dt>Based in</dt>
+              <dd>Stockholm, Sweden</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
+      <section id="approach" class="section approach">
+        <div class="wrap">
+          <div class="section-grid">
+            <p class="eyebrow reveal">Approach</p>
+            <div>
+              <h2 class="display reveal" style="--d: 0.08s">
+                We back companies with a proven product and room to grow<span class="dot">.</span>
+              </h2>
+              <p class="lede reveal" style="--d: 0.16s">
+                Our focus is small and medium-sized businesses in the Nordic region. We invest as
+                operators, with capital and hands-on experience from building digital companies
+                ourselves.
+              </p>
+            </div>
+          </div>
 
-      <section id="contact" class="spread wrap contact">
-        <div>
-          <h2 class="display reveal" style="--d: 0.1s">
-            Looking for angel investment, or want to discuss an opportunity?
-          </h2>
-          <a href="mailto:info@tarsiercapital.se" class="email reveal" style="--d: 0.2s">info@tarsiercapital.se</a>
+          <ol class="principles">
+            <li class="principle reveal">
+              <span class="num">01</span>
+              <h3>Proven product</h3>
+              <p>We look for businesses whose product has already proven itself, with clear room left to grow.</p>
+            </li>
+            <li class="principle reveal" style="--d: 0.08s">
+              <span class="num">02</span>
+              <h3>Operators as investors</h3>
+              <p>Alongside capital, we bring hands-on experience from building digital companies ourselves.</p>
+            </li>
+            <li class="principle reveal" style="--d: 0.16s">
+              <span class="num">03</span>
+              <h3>Long-term capital</h3>
+              <p>We invest with a long horizon in small and medium-sized companies across the Nordic region.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact on-dark">
+        <div class="wrap section-grid">
+          <p class="eyebrow reveal">Contact</p>
+          <div>
+            <h2 class="display reveal" style="--d: 0.08s">
+              Looking for angel investment, or want to discuss an opportunity?
+            </h2>
+            <a href="mailto:info@tarsiercapital.se" class="email reveal" style="--d: 0.16s">
+              info@tarsiercapital.se
+              <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2.5 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="wrap">
-      <span>&copy; 2026 Tarsier Capital AB</span>
-      <div>
-        <span>Org.nr 559003-4970</span>
-        <span>Stockholm, Sweden</span>
+    <footer class="site-footer on-dark">
+      <div class="wrap">
+        <a href="#top" class="brand" aria-label="Tarsier Capital — back to top">
+          <svg viewBox="0 0 34 18" fill="none" aria-hidden="true">
+            <circle cx="9" cy="9" r="7.25" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="25" cy="9" r="7.25" stroke="currentColor" stroke-width="1.5" />
+            <circle class="pupil" cx="9" cy="9" r="2.75" />
+            <circle class="pupil" cx="25" cy="9" r="2.75" />
+          </svg>
+          <span>Tarsier Capital</span>
+        </a>
+        <ul class="legal">
+          <li>&copy; 2026 Tarsier Capital AB</li>
+          <li>Org.nr 559003-4970</li>
+          <li>Stockholm, Sweden</li>
+        </ul>
       </div>
     </footer>
 
     <script>
       (function () {
+        var header = document.getElementById('site-header');
+        var onScroll = function () {
+          header.classList.toggle('is-scrolled', window.scrollY > 24);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+
         var els = document.querySelectorAll('.reveal');
         if (!('IntersectionObserver' in window)) {
           els.forEach(function (el) { el.classList.add('in'); });
@@ -384,7 +764,7 @@
               io.unobserve(e.target);
             }
           });
-        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
         els.forEach(function (el) { io.observe(el); });
       })();
     </script>
