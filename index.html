@@ -517,38 +517,6 @@
         margin-top: clamp(1.75rem, 4vh, 2.5rem);
       }
 
-      .facts {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        border-top: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(4, 5, 7, 0.5), transparent);
-      }
-
-      .fact {
-        padding: 1.2rem 1.5rem 1.8rem 0;
-      }
-
-      .fact + .fact {
-        padding-left: 1.5rem;
-        border-left: 1px solid var(--line);
-      }
-
-      .fact dt {
-        font-family: var(--mono);
-        font-size: 0.68rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-3);
-      }
-
-      .fact dd {
-        margin-top: 0.45rem;
-        font-size: clamp(1rem, 1.25vw, 1.12rem);
-        line-height: 1.35;
-        letter-spacing: -0.015em;
-        color: var(--text);
-      }
-
       /* ---------- Approach ---------- */
       .approach {
         display: flex;
@@ -803,19 +771,6 @@
 
       /* ---------- Responsive ---------- */
       @media (max-width: 900px) {
-        .facts {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-        .fact {
-          padding-bottom: 1.2rem;
-        }
-        .fact:nth-child(odd) {
-          padding-left: 0;
-          border-left: 0;
-        }
-        .fact:nth-child(n + 3) {
-          border-top: 1px solid var(--line);
-        }
         .cards {
           grid-template-columns: minmax(0, 1fr);
         }
@@ -850,15 +805,6 @@
         .btn {
           padding: 0.92rem 1.15rem;
           gap: 0.55rem;
-        }
-        .fact {
-          padding-right: 1rem;
-        }
-        .fact + .fact {
-          padding-left: 1rem;
-        }
-        .fact:nth-child(odd) {
-          padding-left: 0;
         }
         .site-footer .wrap {
           flex-direction: column;
@@ -939,27 +885,6 @@
               </svg>
             </a>
           </div>
-        </div>
-
-        <div class="wrap">
-          <dl class="facts reveal" style="--d: 0.7s">
-            <div class="fact">
-              <dt>Focus</dt>
-              <dd>Small and medium-sized growth companies</dd>
-            </div>
-            <div class="fact">
-              <dt>Region</dt>
-              <dd>The Nordics</dd>
-            </div>
-            <div class="fact">
-              <dt>Approach</dt>
-              <dd>Operator-led, long-term capital</dd>
-            </div>
-            <div class="fact">
-              <dt>Based in</dt>
-              <dd>Stockholm, Sweden</dd>
-            </div>
-          </dl>
         </div>
       </section>
 
@@ -1055,6 +980,7 @@
       uniform float uAspect;
       uniform float uPx;
       uniform float uDim;
+      uniform float uCalm;
       uniform float uIntro;
       uniform float uPointerOn;
       uniform vec2 uPointer;
@@ -1134,7 +1060,9 @@
         vec3 cool = vec3(0.74, 0.86, 1.0);
         vec3 mint = vec3(0.43, 1.0, 0.71);
         vec3 col = mix(cool, mint, clamp(accent + near * 0.9, 0.0, 1.0));
-        float alpha = bright * depth * uDim * it * mix(1.0, twinkle * 1.35, accent) * (1.0 + near * 0.7);
+        // on wide screens, keep the map quiet where it runs behind the headline
+        float calm = mix(1.0, mix(0.3, 1.0, smoothstep(-0.3, 0.1, ndc.x)), uCalm * (1.0 - smoothstep(0.0, 0.6, st)));
+        float alpha = bright * depth * uDim * calm * it * mix(1.0, twinkle * 1.35, accent) * (1.0 + near * 0.7);
         vCol = vec4(col, clamp(alpha, 0.0, 1.6));
       }
     </script>
@@ -1596,7 +1524,7 @@
           attr('aD', f.D, 3);
           attr('aSeed', f.seed, 4);
 
-          ['uVP', 'uM0', 'uM1', 'uM2', 'uM3', 'uStage', 'uTime', 'uAspect', 'uPx', 'uDim', 'uIntro', 'uPointerOn', 'uPointer', 'uHub'].forEach(function (name) {
+          ['uVP', 'uM0', 'uM1', 'uM2', 'uM3', 'uStage', 'uTime', 'uAspect', 'uPx', 'uDim', 'uCalm', 'uIntro', 'uPointerOn', 'uPointer', 'uHub'].forEach(function (name) {
             uni[name] = gl.getUniformLocation(prog, name);
           });
           gl.disable(gl.DEPTH_TEST);
@@ -1673,6 +1601,7 @@
           gl.uniform1f(uni.uAspect, view.aspect);
           gl.uniform1f(uni.uPx, (canvas.height / 900) * 1.9);
           gl.uniform1f(uni.uDim, lerp(0.62, 1, view.wide));
+          gl.uniform1f(uni.uCalm, view.wide);
           gl.uniform1f(uni.uIntro, intro);
           gl.uniform1f(uni.uPointerOn, pointer.presence);
           gl.uniform2f(uni.uPointer, (2 * pointer.sx) / W - 1, 1 - (2 * pointer.sy) / fieldH);
