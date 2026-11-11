@@ -555,34 +555,12 @@
         letter-spacing: -0.03em;
       }
 
-      .email {
-        display: inline-block;
-        margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
-        padding-bottom: 0.08em;
-        font-size: clamp(1.25rem, 3.2vw, 2.75rem);
-        font-weight: 500;
-        line-height: 1.1;
-        letter-spacing: -0.035em;
-        color: var(--text);
-        background:
-          linear-gradient(90deg, var(--mint), var(--cyan) 28%, var(--violet) 50%, var(--text) 50%) 100% 0 / 200% 100%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        transition: background-position 0.9s var(--ease);
-      }
-
-      .email:hover,
-      .email:focus-visible {
-        background-position: 0 0;
-      }
-
       .contact-actions {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.9rem 1rem;
-        margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+        margin-top: clamp(2rem, 4vw, 3rem);
       }
 
       .copy[hidden] {
@@ -853,10 +831,7 @@
           <h2 class="reveal">
             <span class="glow">Looking</span> for angel investment, or want to discuss an opportunity?
           </h2>
-          <div class="reveal" style="--d: 0.08s">
-            <a href="mailto:info@tarsiercapital.se" class="email" id="email">info@tarsiercapital.se</a>
-          </div>
-          <div class="contact-actions reveal" style="--d: 0.16s">
+          <div class="contact-actions reveal" style="--d: 0.08s">
             <a href="mailto:info@tarsiercapital.se" class="btn btn-primary" data-magnetic>
               Write to us
               <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
