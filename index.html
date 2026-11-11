@@ -15,7 +15,7 @@
     <meta name="theme-color" content="#040507" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23040507'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='%236dffb4' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='3.25' fill='%236dffb4'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23040507'/%3E%3Cg fill='%23f1f4f6'%3E%3Ccircle cx='8' cy='8' r='3.4'/%3E%3Ccircle cx='16' cy='8' r='3.4'/%3E%3Ccircle cx='16' cy='16' r='3.4'/%3E%3Ccircle cx='16' cy='24' r='3.4'/%3E%3C/g%3E%3Ccircle cx='24' cy='8' r='3.4' fill='%236dffb4'/%3E%3C/svg%3E"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -368,15 +368,53 @@
         white-space: nowrap;
       }
 
-      .brand svg {
+      /* The mark: five dots that form a T, one of them lit */
+      .mark {
         flex: none;
-        width: 36px;
-        height: 19px;
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
         overflow: visible;
       }
 
-      .brand .logo-pupil {
+      .mark circle {
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      .mark .lit {
         fill: var(--mint);
+        fill: url(#mark-lit);
+        filter: drop-shadow(0 0 5px rgba(109, 255, 180, 0.7));
+      }
+
+      .js .site-header .mark circle {
+        scale: 0;
+        transition: scale 0.7s var(--ease);
+      }
+
+      .js.is-ready .site-header .mark circle {
+        scale: 1;
+      }
+
+      .site-header .mark circle:nth-child(2) { transition-delay: 0.07s; }
+      .site-header .mark circle:nth-child(3) { transition-delay: 0.14s; }
+      .site-header .mark circle:nth-child(4) { transition-delay: 0.21s; }
+      .site-header .mark circle:nth-child(5) { transition-delay: 0.28s; }
+
+      .brand:hover .mark circle {
+        animation: hop 0.55s var(--ease) backwards;
+      }
+
+      .brand:hover .mark circle:nth-child(2) { animation-delay: 0.05s; }
+      .brand:hover .mark circle:nth-child(3) { animation-delay: 0.1s; }
+      .brand:hover .mark circle:nth-child(4) { animation-delay: 0.15s; }
+      .brand:hover .mark circle:nth-child(5) { animation-delay: 0.2s; }
+
+      @keyframes hop {
+        40% {
+          transform: scale(1.35);
+        }
       }
 
       .nav-links {
@@ -854,6 +892,7 @@
           translate: none;
           transition: none;
         }
+        .brand:hover .mark circle,
         .links path,
         .hub.is-home i::before,
         .hub.is-home i::after,
@@ -865,6 +904,10 @@
         }
         .js .card .art .draw {
           stroke-dashoffset: 0;
+          transition: none;
+        }
+        .js .site-header .mark circle {
+          scale: 1;
           transition: none;
         }
         .arrow,
@@ -914,6 +957,15 @@
     </style>
   </head>
   <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <linearGradient id="mark-lit" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#6dffb4" />
+          <stop offset="1" stop-color="#5ad7ff" />
+        </linearGradient>
+      </defs>
+    </svg>
+
     <canvas id="field" aria-hidden="true"></canvas>
 
     <div class="overlay" id="overlay" aria-hidden="true">
@@ -943,11 +995,12 @@
     <header class="site-header" id="site-header">
       <div class="wrap nav">
         <a href="#top" class="brand" aria-label="Tarsier Capital — home">
-          <svg viewBox="0 0 36 19" fill="none" aria-hidden="true">
-            <circle cx="9.5" cy="9.5" r="8" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="26.5" cy="9.5" r="8" stroke="currentColor" stroke-width="1.5" />
-            <circle class="logo-pupil" cx="9.5" cy="9.5" r="3" />
-            <circle class="logo-pupil" cx="26.5" cy="9.5" r="3" />
+          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="4" cy="4" r="3.3" />
+            <circle cx="12" cy="4" r="3.3" />
+            <circle class="lit" cx="20" cy="4" r="3.3" />
+            <circle cx="12" cy="12" r="3.3" />
+            <circle cx="12" cy="20" r="3.3" />
           </svg>
           <span>Tarsier Capital</span>
         </a>
@@ -1123,11 +1176,12 @@
     <footer class="site-footer">
       <div class="wrap">
         <a href="#top" class="brand" aria-label="Tarsier Capital — back to top">
-          <svg viewBox="0 0 36 19" fill="none" aria-hidden="true">
-            <circle cx="9.5" cy="9.5" r="8" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="26.5" cy="9.5" r="8" stroke="currentColor" stroke-width="1.5" />
-            <circle class="logo-pupil" cx="9.5" cy="9.5" r="3" />
-            <circle class="logo-pupil" cx="26.5" cy="9.5" r="3" />
+          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="4" cy="4" r="3.3" />
+            <circle cx="12" cy="4" r="3.3" />
+            <circle class="lit" cx="20" cy="4" r="3.3" />
+            <circle cx="12" cy="12" r="3.3" />
+            <circle cx="12" cy="20" r="3.3" />
           </svg>
           <span>Tarsier Capital</span>
         </a>
@@ -1453,28 +1507,6 @@
             });
           });
         }
-
-        /* ---------- Logo: the pupils follow the pointer ---------- */
-        var logoPupils = Array.prototype.slice.call(document.querySelectorAll('.logo-pupil')).slice(0, 2).map(function (el) {
-          return { el: el, x: 0, y: 0 };
-        });
-        var updateLogo = function (time, k) {
-          if (scroll.y >= H) return;
-          logoPupils.forEach(function (lp) {
-            var r = lp.el.getBoundingClientRect();
-            var cx = r.left + r.width / 2;
-            var cy = r.top + r.height / 2;
-            var tx = pointer.presence > 0.02 ? pointer.sx : cx + Math.sin(time * 0.55) * 260;
-            var ty = pointer.presence > 0.02 ? pointer.sy : cy + Math.cos(time * 0.4) * 160 + 80;
-            var dx = tx - cx;
-            var dy = ty - cy;
-            var dist = Math.sqrt(dx * dx + dy * dy) || 1;
-            var reach = clamp(dist / 260, 0, 1);
-            lp.x = lerp(lp.x, (dx / dist) * reach, k);
-            lp.y = lerp(lp.y, (dy / dist) * reach, k);
-            lp.el.style.transform = 'translate(' + (lp.x * 3.2).toFixed(2) + 'px,' + (lp.y * 3.2).toFixed(2) + 'px)';
-          });
-        };
 
         /* ---------- Stockholm clock ---------- */
         var clock = document.getElementById('clock-rail');
@@ -1911,7 +1943,6 @@
             scroll.dirty = false;
             updateScrub();
           }
-          updateLogo(time, 1 - Math.pow(0.0008, dt));
           if (gl) {
             place(time);
             draw(time);
