@@ -134,48 +134,6 @@
       }
 
       /* ---------- Type ---------- */
-      .label {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7rem;
-        font-family: var(--mono);
-        font-size: 0.74rem;
-        font-weight: 400;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-3);
-      }
-
-      .label .pulse {
-        position: relative;
-        flex: none;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--mint);
-        box-shadow: 0 0 12px var(--mint);
-      }
-
-      .label .pulse::after {
-        content: '';
-        position: absolute;
-        inset: -5px;
-        border-radius: 50%;
-        border: 1px solid var(--mint);
-        animation: pulse 2.4s ease-out infinite;
-      }
-
-      @keyframes pulse {
-        from {
-          transform: scale(0.4);
-          opacity: 0.9;
-        }
-        to {
-          transform: scale(1.5);
-          opacity: 0;
-        }
-      }
-
       .glow {
         font-family: var(--serif);
         font-style: italic;
@@ -296,7 +254,10 @@
         z-index: -1;
         background:
           linear-gradient(90deg, rgba(5, 7, 11, 0.6), transparent 62%),
-          linear-gradient(180deg, transparent 62%, rgba(5, 7, 11, 0.7));
+          linear-gradient(180deg, transparent 55%, rgba(5, 7, 11, 0.7));
+        /* fade the scrim out so the hero blends into the next section */
+        -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent);
+        mask-image: linear-gradient(180deg, #000 72%, transparent);
         pointer-events: none;
       }
 
@@ -310,7 +271,6 @@
       }
 
       .hero-title {
-        margin-top: clamp(1.25rem, 3.5vh, 2.25rem);
         font-size: clamp(2.6rem, min(12.4vw, 21vh), 11.5rem);
         font-weight: 500;
         line-height: 0.9;
@@ -450,52 +410,6 @@
         color: var(--text);
       }
 
-      /* ---------- Marquee ---------- */
-      .marquee {
-        overflow: hidden;
-        padding-block: clamp(1.25rem, 3vw, 2.25rem);
-        border-block: 1px solid var(--line);
-        background: rgba(5, 7, 11, 0.35);
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-        white-space: nowrap;
-        user-select: none;
-      }
-
-      .marquee-track {
-        display: inline-flex;
-        will-change: transform;
-      }
-
-      .marquee-group {
-        display: inline-flex;
-        align-items: center;
-        flex: none;
-      }
-
-      .marquee-group span {
-        font-size: clamp(2.6rem, 8vw, 7rem);
-        font-weight: 500;
-        line-height: 1;
-        letter-spacing: -0.045em;
-        color: var(--text);
-      }
-
-      .marquee-group span:nth-of-type(even) {
-        color: transparent;
-        -webkit-text-stroke: 1px rgba(238, 243, 241, 0.5);
-      }
-
-      .marquee-group i {
-        flex: none;
-        width: clamp(0.7rem, 1.6vw, 1.3rem);
-        aspect-ratio: 1;
-        margin-inline: clamp(1.25rem, 3.5vw, 3.25rem);
-        border-radius: 50%;
-        background: var(--aurora);
-        box-shadow: 0 0 24px rgba(109, 255, 180, 0.6);
-      }
-
       /* ---------- Sections ---------- */
       .section {
         padding-block: clamp(5.5rem, 13vw, 11rem);
@@ -504,7 +418,6 @@
 
       /* ---------- Approach ---------- */
       .statement {
-        margin-top: clamp(1.5rem, 3vw, 2.5rem);
         max-width: 17ch;
         font-size: clamp(2.3rem, 7vw, 6.4rem);
         font-weight: 500;
@@ -626,89 +539,8 @@
         padding-bottom: clamp(4.5rem, 10vw, 8rem);
       }
 
-      .eyes {
-        display: flex;
-        justify-content: center;
-        gap: clamp(0.9rem, 2.4vw, 2rem);
-        margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
-      }
-
-      .eye {
-        --size: clamp(6.5rem, 17vw, 13.5rem);
-        position: relative;
-        width: var(--size);
-        aspect-ratio: 1;
-        border-radius: 50%;
-        border: 1px solid rgba(238, 243, 241, 0.28);
-        background: radial-gradient(circle at 50% 42%, rgba(18, 26, 30, 0.72), rgba(5, 7, 11, 0.9) 72%);
-        box-shadow:
-          0 0 90px rgba(109, 255, 180, 0.16),
-          inset 0 0 0 clamp(5px, 0.9vw, 10px) rgba(5, 7, 11, 0.55),
-          inset 0 0 50px rgba(109, 255, 180, 0.1);
-        overflow: hidden;
-        cursor: pointer;
-      }
-
-      .eye.blink {
-        animation: blink 0.26s ease-in-out;
-      }
-
-      @keyframes blink {
-        45%,
-        55% {
-          transform: scaleY(0.04);
-        }
-      }
-
-      .iris {
-        position: absolute;
-        left: 19%;
-        top: 19%;
-        width: 62%;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        transform: translate(var(--ix, 0px), var(--iy, 0px));
-        background:
-          repeating-conic-gradient(from 0deg, rgba(5, 7, 11, 0.62) 0deg var(--tick, 1.6deg), transparent var(--tick, 1.6deg) calc(var(--tick, 1.6deg) * 2.8)),
-          radial-gradient(circle, #1a1140 0%, var(--violet) 30%, var(--cyan) 52%, var(--mint) 74%, #0c3b2c 100%);
-        box-shadow:
-          0 0 46px rgba(109, 255, 180, 0.4),
-          inset 0 0 0 1px rgba(238, 243, 241, 0.2);
-        will-change: transform;
-      }
-
-      .pupil {
-        position: absolute;
-        left: 27%;
-        top: 27%;
-        width: 46%;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background: #020304;
-        box-shadow: 0 0 0 1px rgba(238, 243, 241, 0.16), 0 0 26px rgba(2, 3, 4, 0.9);
-        transform: translate(var(--px, 0px), var(--py, 0px));
-        transition: scale 0.5s var(--ease);
-        will-change: transform;
-      }
-
-      .pupil::after {
-        content: '';
-        position: absolute;
-        left: 18%;
-        top: 16%;
-        width: 22%;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.92);
-        filter: blur(0.5px);
-      }
-
-      .contact.is-keen .pupil {
-        scale: 1.28;
-      }
-
       .contact h2 {
-        margin: clamp(1.25rem, 2.5vw, 2rem) auto 0;
+        margin-inline: auto;
         max-width: 19ch;
         font-size: clamp(2rem, 5.4vw, 4.6rem);
         font-weight: 500;
@@ -837,9 +669,7 @@
           translate: none;
           transition: none;
         }
-        .glow,
-        .label .pulse::after,
-        .eye.blink {
+        .glow {
           animation: none;
         }
         .arrow,
@@ -897,9 +727,6 @@
           padding: 0.95rem 1.2rem;
           gap: 0.55rem;
         }
-        .iris {
-          --tick: 3deg;
-        }
         .fact {
           padding-right: 1rem;
         }
@@ -941,7 +768,6 @@
     <main id="top">
       <section class="hero">
         <div class="wrap hero-body">
-          <p class="label reveal"><span class="pulse"></span>Stockholm · Investment company</p>
           <h1 class="hero-title">
             <span class="line"><span class="line-inner">Investing in</span></span>
             <span class="line"
@@ -991,18 +817,8 @@
         </div>
       </section>
 
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track" id="marquee">
-          <div class="marquee-group">
-            <span>Nordic growth</span><i></i><span>Proven products</span><i></i><span>Operator-led</span><i></i
-            ><span>Long-term capital</span><i></i>
-          </div>
-        </div>
-      </div>
-
       <section id="approach" class="section approach">
         <div class="wrap">
-          <p class="label reveal"><span class="pulse"></span>Approach</p>
           <h2 class="statement" data-scrub>
             We back companies with a proven product and <span class="glow">room to grow.</span>
           </h2>
@@ -1034,18 +850,13 @@
 
       <section id="contact" class="section contact">
         <div class="wrap">
-          <div class="eyes reveal" aria-hidden="true">
-            <div class="eye" data-eye><div class="iris"><div class="pupil"></div></div></div>
-            <div class="eye" data-eye><div class="iris"><div class="pupil"></div></div></div>
-          </div>
-          <p class="label reveal"><span class="pulse"></span>Contact</p>
-          <h2 class="reveal" style="--d: 0.08s">
+          <h2 class="reveal">
             <span class="glow">Looking</span> for angel investment, or want to discuss an opportunity?
           </h2>
-          <div class="reveal" style="--d: 0.16s">
+          <div class="reveal" style="--d: 0.08s">
             <a href="mailto:info@tarsiercapital.se" class="email" id="email">info@tarsiercapital.se</a>
           </div>
-          <div class="contact-actions reveal" style="--d: 0.24s">
+          <div class="contact-actions reveal" style="--d: 0.16s">
             <a href="mailto:info@tarsiercapital.se" class="btn btn-primary" data-magnetic>
               Write to us
               <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -1192,7 +1003,7 @@
         var W = window.innerWidth;
         var H = window.innerHeight;
         var pointer = { x: W * 0.72, y: H * 0.34, sx: W * 0.72, sy: H * 0.34, seen: 0, presence: 0 };
-        var scroll = { y: window.scrollY, p: 0, sp: 0, vel: 0, dirty: true };
+        var scroll = { y: window.scrollY, p: 0, sp: 0, dirty: true };
 
         /* ---------- Hero entrance ---------- */
         var ready = function () { root.classList.add('is-ready'); };
@@ -1274,7 +1085,6 @@
         var readScroll = function () {
           var y = window.scrollY;
           var max = Math.max(1, document.documentElement.scrollHeight - H);
-          scroll.vel = y - scroll.y;
           scroll.y = y;
           scroll.p = clamp(y / max, 0, 1);
           scroll.dirty = true;
@@ -1324,51 +1134,12 @@
           });
         }
 
-        /* ---------- Eyes ---------- */
-        var eyes = Array.prototype.slice.call(document.querySelectorAll('[data-eye]')).map(function (el) {
-          return { el: el, iris: el.querySelector('.iris'), pupil: el.querySelector('.pupil'), x: 0, y: 0 };
-        });
+        /* ---------- Logo: the pupils follow the pointer ---------- */
         var logoPupils = Array.prototype.slice.call(document.querySelectorAll('.logo-pupil')).map(function (el) {
           return { el: el, x: 0, y: 0 };
         });
-        var contact = document.getElementById('contact');
-        var eyesVisible = false;
-        if ('IntersectionObserver' in window && eyes.length) {
-          new IntersectionObserver(function (entries) {
-            eyesVisible = entries[0].isIntersecting;
-          }).observe(eyes[0].el.parentNode);
-        } else {
-          eyesVisible = true;
-        }
 
-        var blink = function () {
-          eyes.forEach(function (eye) {
-            eye.el.classList.remove('blink');
-            void eye.el.offsetWidth;
-            eye.el.classList.add('blink');
-          });
-        };
-        eyes.forEach(function (eye) { eye.el.addEventListener('click', blink); });
-        if (!reduce) {
-          (function loopBlink() {
-            setTimeout(function () {
-              if (eyesVisible && !document.hidden) blink();
-              loopBlink();
-            }, 2600 + Math.random() * 4200);
-          })();
-        }
-        ['pointerenter', 'focusin'].forEach(function (ev) {
-          contact.addEventListener(ev, function (e) {
-            if (e.target.closest && e.target.closest('.email, .btn')) contact.classList.add('is-keen');
-          }, true);
-        });
-        ['pointerleave', 'focusout'].forEach(function (ev) {
-          contact.addEventListener(ev, function (e) {
-            if (e.target.closest && e.target.closest('.email, .btn')) contact.classList.remove('is-keen');
-          }, true);
-        });
-
-        // Where the eyes look: at the pointer, or wandering on their own when there is none
+        // Look at the pointer, or wander when there is none
         var gaze = function (cx, cy, time) {
           var tx, ty;
           if (pointer.presence > 0.02) {
@@ -1385,56 +1156,16 @@
           return { x: (dx / dist) * reach, y: (dy / dist) * reach };
         };
 
-        var updateEyes = function (time, k) {
-          if (eyesVisible) {
-            eyes.forEach(function (eye) {
-              var r = eye.el.getBoundingClientRect();
-              var g = gaze(r.left + r.width / 2, r.top + r.height / 2, time);
-              eye.x = lerp(eye.x, g.x, k);
-              eye.y = lerp(eye.y, g.y, k);
-              var travel = r.width * 0.15;
-              eye.iris.style.setProperty('--ix', (eye.x * travel).toFixed(2) + 'px');
-              eye.iris.style.setProperty('--iy', (eye.y * travel).toFixed(2) + 'px');
-              eye.pupil.style.setProperty('--px', (eye.x * travel * 0.28).toFixed(2) + 'px');
-              eye.pupil.style.setProperty('--py', (eye.y * travel * 0.28).toFixed(2) + 'px');
-            });
-          }
-          if (scroll.y < H) {
-            logoPupils.slice(0, 2).forEach(function (lp) {
-              var r = lp.el.getBoundingClientRect();
-              var g = gaze(r.left + r.width / 2, r.top + r.height / 2, time);
-              lp.x = lerp(lp.x, g.x, k);
-              lp.y = lerp(lp.y, g.y, k);
-              lp.el.style.transform = 'translate(' + (lp.x * 3.2).toFixed(2) + 'px,' + (lp.y * 3.2).toFixed(2) + 'px)';
-            });
-          }
+        var updateLogo = function (time, k) {
+          if (scroll.y >= H) return;
+          logoPupils.slice(0, 2).forEach(function (lp) {
+            var r = lp.el.getBoundingClientRect();
+            var g = gaze(r.left + r.width / 2, r.top + r.height / 2, time);
+            lp.x = lerp(lp.x, g.x, k);
+            lp.y = lerp(lp.y, g.y, k);
+            lp.el.style.transform = 'translate(' + (lp.x * 3.2).toFixed(2) + 'px,' + (lp.y * 3.2).toFixed(2) + 'px)';
+          });
         };
-
-        /* ---------- Marquee ---------- */
-        var track = document.getElementById('marquee');
-        var group = track.firstElementChild;
-        var groupW = 0;
-        var mx = 0;
-        var mDir = -1;
-        var fill = function () {
-          groupW = group.getBoundingClientRect().width;
-          if (!groupW) return;
-          var need = Math.ceil((W * 2) / groupW) + 1;
-          while (track.children.length < need) track.appendChild(group.cloneNode(true));
-        };
-        fill();
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fill);
-
-        var updateMarquee = function (dt) {
-          if (!groupW) return;
-          if (scroll.vel > 0.5) mDir = -1;
-          else if (scroll.vel < -0.5) mDir = 1;
-          mx += mDir * (46 + Math.min(Math.abs(scroll.sv) * 0.9, 900)) * dt;
-          if (mx <= -groupW) mx += groupW;
-          if (mx > 0) mx -= groupW;
-          track.style.transform = 'translate3d(' + mx.toFixed(2) + 'px,0,0)';
-        };
-        scroll.sv = 0;
 
         /* ---------- Stockholm clock ---------- */
         var clock = document.getElementById('clock');
@@ -1459,7 +1190,6 @@
             navigator.clipboard.writeText('info@tarsiercapital.se').then(function () {
               copy.classList.add('is-done');
               copyLabel.textContent = 'Copied';
-              blink();
               clearTimeout(copyTimer);
               copyTimer = setTimeout(function () {
                 copy.classList.remove('is-done');
@@ -1551,7 +1281,6 @@
             lastW = W;
             sizeSky();
           }
-          fill();
           readScroll();
           if (reduce) still();
         });
@@ -1588,16 +1317,13 @@
           pointer.sy = lerp(pointer.sy, pointer.y, k);
 
           scroll.sp = lerp(scroll.sp, scroll.p, 1 - Math.pow(0.004, dt));
-          scroll.sv = lerp(scroll.sv, scroll.vel / Math.max(dt, 0.008), 1 - Math.pow(0.0005, dt));
-          scroll.vel *= 0.6;
           intro = Math.min(1, intro + dt / 2.2);
 
           if (scroll.dirty) {
             scroll.dirty = false;
             updateScrub();
           }
-          updateEyes(time, 1 - Math.pow(0.0008, dt));
-          updateMarquee(dt);
+          updateLogo(time, 1 - Math.pow(0.0008, dt));
           // The aurora drifts slowly, so half the display rate is plenty
           if (now - lastSky > 30) {
             lastSky = now;
